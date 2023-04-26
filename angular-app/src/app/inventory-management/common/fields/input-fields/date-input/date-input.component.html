@@ -1,0 +1,48 @@
+<p-card class="rounded-top" [style]="{'margin': '2em'}">
+    <ng-template  pTemplate="header">
+        <div class="bg-primary d-flex flex-row d-flex justify-content-between align-items-center">
+            <div class="ml-2  text-light" *ngIf="pageObject;else label">
+                {{ pageObject.configuration ? pageObject.configuration.fieldConfiguration.label : "Date input" }}
+            </div>
+            <ng-template #label>
+                <div class="ml-2 text-light">Date input</div>
+            </ng-template>
+            <div>
+                <button pButton pRipple type="button" icon="pi pi-cog text-light font-weight-bold" class="p-button p-button-gray p-button-text" (click)="emitConfig()"></button>
+                <button pButton pRipple type="button" icon="pi pi-trash text-light font-weight-bold" class="p-button p-button-gray p-button-text" (click)="emitDeletion()"></button>
+            </div>
+        </div>
+    </ng-template>
+    <div class="m-4">
+        <div *ngIf="pageObject.configuration; else emptyConfigMessage" class="text-center">
+                <p-calendar ngModel [showTime]="true" [showIcon]="true" [showSeconds]="true" [minDate]="pageObject.configuration.fieldConfiguration.minDate" [maxDate]="pageObject.configuration.fieldConfiguration.maxDate" appendTo="body"  inputId="time"></p-calendar>
+        </div>  
+        <ng-template #emptyConfigMessage>
+            <span>Please configure the field</span>
+        </ng-template>  
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="bg-light">
+            <div class="mx-2 d-flex flex-row justify-content-between align-items-center">
+                <div>
+                    <span>postion : <strong>{{ droppedFieldId }}</strong></span>
+                </div>
+                <div>
+                   <div *ngIf="pageObject.configuration">
+                        <span>
+                        mandatory : 
+                        <strong *ngIf="pageObject.configuration.fieldConfiguration.isRequired ;else unrequired">
+                            <i class="pi pi-check text-success"></i>
+                        </strong>
+                            <ng-template #unrequired>
+                                <strong>
+                                    <i class="pi pi-times text-danger"></i>
+                                </strong>
+                            </ng-template>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-card>

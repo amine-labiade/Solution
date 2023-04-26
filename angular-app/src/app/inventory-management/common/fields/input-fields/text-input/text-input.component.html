@@ -1,0 +1,157 @@
+<p-card class="rounded-top" [style]="{ margin: '2em' }">
+  <ng-template pTemplate="header">
+    <div
+      class="bg-primary d-flex flex-row d-flex justify-content-between align-items-center"
+    >
+      <div class="ml-2 text-light" *ngIf="pageObject; else label">
+        {{
+          pageObject.configuration
+            ? pageObject.configuration.fieldConfiguration.label
+            : "Text input"
+        }}
+      </div>
+      <ng-template #label>
+        <div class="ml-2 text-light">Text input</div>
+      </ng-template>
+      <div>
+        <button
+          pButton
+          pRipple
+          type="button"
+          icon="pi pi-cog text-light font-weight-bold"
+          class="p-button p-button-gray p-button-text"
+          (click)="emitConfig()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          icon="pi pi-trash text-light font-weight-bold"
+          class="p-button p-button-gray p-button-text"
+          (click)="emitDeletion()"
+        ></button>
+      </div>
+    </div>
+  </ng-template>
+  <div class="m-4">
+    <div
+      *ngIf="pageObject.configuration; else emptyConfigMessage"
+      class="text-center"
+    >
+      <div
+        [ngSwitch]="pageObject.configuration.fieldConfiguration.textInputType"
+      >
+        <div *ngSwitchCase="type_inputs_en.text">
+          <label for="inputText" class="block">{{
+            pageObject.configuration.fieldConfiguration.name
+          }}</label>
+          <input
+            id="inputText"
+            type="text"
+            pInputText
+            placeholder="{{
+              pageObject.configuration.fieldConfiguration.placeholder
+            }}"
+            ngModel
+            [minlength]="
+              pageObject.configuration.fieldConfiguration.textInputMin
+            "
+            [maxlength]="
+              pageObject.configuration.fieldConfiguration.textInputMax
+            "
+          />
+        </div>
+        <div *ngSwitchCase="type_inputs_en.password">
+          <label for="passwordInput" class="block">{{
+            pageObject.configuration.fieldConfiguration.name
+          }}</label>
+          <p-password
+            id="passwordInput"
+            placeholder="{{
+              pageObject.configuration.fieldConfiguration.placeholder
+            }}"
+            [minlength]="
+              pageObject.configuration.fieldConfiguration.textInputMin
+            "
+            [maxlength]="
+              pageObject.configuration.fieldConfiguration.textInputMax
+            "
+            ngModel
+            [toggleMask]="true"
+          ></p-password>
+        </div>
+        <div *ngSwitchCase="type_inputs_en.number">
+          <label for="numberInput">{{
+            pageObject.configuration.fieldConfiguration.name
+          }}</label>
+          <p-inputNumber
+            id="numberInput"
+            placeholder="{{
+              pageObject.configuration.fieldConfiguration.placeholder
+            }}"
+            ngModel
+            [min]="pageObject.configuration.fieldConfiguration.textInputMin"
+            [showButtons]="true"
+            [max]="pageObject.configuration.fieldConfiguration.textInputMax"
+          ></p-inputNumber>
+        </div>
+        <div *ngSwitchCase="type_inputs_en.phone_number">
+          <label for="inputText" class="block">{{
+            pageObject.configuration.fieldConfiguration.name
+          }}</label>
+          <input
+            id="inputText"
+            type="text"
+            pInputText
+            placeholder="{{
+              pageObject.configuration.fieldConfiguration.placeholder
+            }}"
+            ngModel
+            [minlength]="
+              pageObject.configuration.fieldConfiguration.textInputMin
+            "
+            [maxlength]="
+              pageObject.configuration.fieldConfiguration.textInputMax
+            "
+          />
+        </div>
+      </div>
+    </div>
+    <ng-template #emptyConfigMessage>
+      <span>Please configure the field</span>
+    </ng-template>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="bg-light">
+      <div
+        class="mx-2 d-flex flex-row justify-content-between align-items-center"
+      >
+        <div>
+          <span
+            >postion : <strong>{{ droppedFieldId }}</strong></span
+          >
+        </div>
+        <div>
+          <div *ngIf="pageObject.configuration">
+            <span>
+              mandatory :
+              <strong
+                *ngIf="
+                  pageObject.configuration.fieldConfiguration.isRequired;
+                  else unrequired
+                "
+              >
+                <i class="pi pi-check text-success"></i>
+              </strong>
+              <ng-template #unrequired>
+                <strong>
+                  <i class="pi pi-times text-danger"></i>
+                </strong>
+              </ng-template>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-card>

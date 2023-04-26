@@ -1,0 +1,116 @@
+:host {
+    overflow-y:scroll;
+    background-color:#EDF2F7;
+    height: 100%;
+}
+
+
+.field-entry {
+    min-height: 60px;
+    background-image: linear-gradient(to bottom right, rgba(230, 237, 216, 0.588), rgba(255, 255, 255, 0.681));
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+  }
+  .field-entry {
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+ /* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.field-entry:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.field-entry:hover {
+    background-image: linear-gradient(to bottom right, rgba(181, 197, 150, 0.64), rgba(160, 124, 124, 0.744));
+}
+
+.dropped-field-entry {
+    min-height: 60px;
+    background-image: linear-gradient(to bottom right, rgba(230, 237, 216, 0.588), rgba(255, 255, 255, 0.681));
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+}
+
+  .list-container{
+      min-height: 100%;
+  }
+
+  .step-wrapper {
+      min-height: 100%;
+      max-height: 100%;
+  }
+  .canvas{
+    min-height: 100%;
+  }
+
+  .canvas-container{
+    max-height: 811px;
+    overflow-y : scroll;
+  }
+  /* Animate items as they're being sorted. */
+.cdk-drop-list-dragging .cdk-drag {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  /* Animate an item that has been dropped. */
+  .cdk-drag-animating {
+    transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+.btn-annuler .btn-addStep
+{
+    background-color: #1F7ACE;
+    border-color: #1F7ACE;
+}
+.btn-enregistrer
+{
+    background-color: #22A546;
+    border-color: #22A546;
+}
+.flex
+{
+    flex-direction: row;
+}
+.box
+{
+    background-color:white;
+    margin-top: 20px ;
+    width: 90%;
+    height: auto;
+    margin-left: 6%;
+    margin-right: auto;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+hr
+{
+    border: 1px solid lightgray;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input.ng-invalid
+{
+    border-left: 5px solid red;
+}
+input.ng-valid 
+{
+    border-left: 5px solid green;
+}
+textarea.ng-invalid
+{
+    border-left: 5px solid red;
+}
+textarea.ng-valid
+{
+    border-left: 5px solid green;
+}
+

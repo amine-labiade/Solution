@@ -1,0 +1,172 @@
+<div class="p-fluid grid formgrid justify-content-center">
+  <div class="field-radiobutton mr-5">
+    <p-radioButton
+      name="withSourceRadio"
+      value="withSource"
+      [(ngModel)]="pageObject.selectedValueRadio"
+      id="withSource"
+    ></p-radioButton>
+    <label for="withSource">With data Source</label>
+  </div>
+  <div class="field-radiobutton">
+    <p-radioButton
+      name="sourcelessRadio"
+      value="sourceless"
+      [(ngModel)]="pageObject.selectedValueRadio"
+      id="sourceless"
+    ></p-radioButton>
+    <label for="sourceless">Without data Source</label>
+  </div>
+</div>
+<form
+  [formGroup]="configuartionDropdownForm"
+  (ngSubmit)="submitConfiguration()"
+>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-6 md:col-4">
+      <label for="label">Label : </label>
+      <input
+        type="text"
+        id="label"
+        name="labelInput"
+        class="requiredInput"
+        pInputText
+        formControlName="label"
+        required
+      />
+    </div>
+    <div class="field col-6 md:col-4">
+      <label for="name">Name : </label>
+      <input
+        type="text"
+        id="name"
+        name="nameInput"
+        class="requiredInput"
+        pInputText
+        formControlName="name"
+        required
+      />
+    </div>
+  </div>
+  <div
+    *ngIf="
+      pageObject.selectedValueRadio == 'withSource';
+      then withSource;
+      else sourceless
+    "
+  ></div>
+  <ng-template #withSource>
+    <div class="p-fluid grid formgrid ml-3 mr-3">
+      <div class="field col-6 md:col-4">
+        <label for="source">Data source : </label>
+        <p-dropdown
+          id="source"
+          name="sourceInput"
+          class="requiredDropdown"
+          placeholder="Choose ..... "
+          (onChange)="onChange($event)"
+          (onClear)="onClear($event)"
+          [options]="pageObject.dataSources"
+          [showClear]="true"
+          [required]="true"
+          (onChange)="onChange($event)"
+          formControlName="source"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+      <div class="field col-6 md:col-4">
+        <label for="defaultValue">default value: </label>
+        <p-dropdown
+          id="defaultValue"
+          name="defaultValueInput"
+          class="requiredDropdown"
+          placeholder="Choose ..... "
+          [showClear]="true"
+          [required]="true"
+          [options]="pageObject.optionsFromApi"
+          formControlName="defaultValue"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #sourceless>
+    <div
+      formArrayName="values"
+      *ngFor="let value of values().controls; let i = index"
+    >
+      <div class="p-fluid grid formgrid ml-3 mr-3" [formGroupName]="i">
+        <div class="field col-6 md:col-4">
+          <label for="value">Value : </label>
+          <input
+            type="text"
+            id="value"
+            name="valueInput"
+            formControlName="value"
+            pInputText
+          />
+        </div>
+        <div class="field-radiobutton mt-4 col-4">
+          <p-radioButton
+            name="default"
+            [value]="i"
+            id="{{ 'default' + i }}"
+            [formControl]="default()"
+          ></p-radioButton>
+          <label for="{{ 'default' + i }}">Default</label>
+        </div>
+        <div class="col4-4 mt-4">
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-plus"
+            class="p-button-rounded p-button-success p-button-text"
+            (click)="addValue()"
+          ></button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-minus"
+            class="p-button-rounded p-button-danger p-button-text"
+            (click)="removeValues(i)"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="p-fluid grid formgrid ml-3">
+    <div class="field-checkbox col-6">
+      <p-checkbox
+        [binary]="true"
+        id="isMultiselect"
+        name="isMultiselect"
+        formControlName="isMultiselect"
+      ></p-checkbox>
+      <label for="isMultiselect">Multiple selection</label>
+    </div>
+    <div class="field-checkbox col-6">
+      <p-checkbox
+        [binary]="true"
+        id="isRequired"
+        name="isRequired"
+        formControlName="isRequired"
+      ></p-checkbox>
+      <label for="isRequired">The field is mandatory</label>
+    </div>
+  </div>
+
+  <div class="flex justify-content-end flex-wrap">
+    <button
+      pButton
+      pRipple
+      type="submit"
+      class="ml-3 mr-4 h-2rem btn-enregistrer"
+      label="Save"
+      icon="pi pi-check"
+    ></button>
+  </div>
+</form>

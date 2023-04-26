@@ -1,0 +1,156 @@
+<div class="p-d-inline-flex box">
+  <p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+  ></p-confirmDialog>
+  <p-toast></p-toast>
+  <div class="pt-5">
+    <p-table
+      #tablearchivedProcesses
+      [value]="this.pageObject.archivedProcesses"
+      dataKey="id"
+      styleClass="p-datatable-sm ml-3 mr-3"
+      responsiveLayout="scroll"
+      [paginator]="true"
+      [rows]="5"
+      [showCurrentPageReport]="true"
+      [rowHover]="true"
+      [resizableColumns]="true"
+      [rowsPerPageOptions]="[5, 10, 15]"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="background-color: #edf2f7">Actions</th>
+          <th style="background-color: #edf2f7" pSortableColumn="name">
+            Inventory process names <p-sortIcon field="name"></p-sortIcon>
+          </th>
+          <th style="background-color: #edf2f7" pSortableColumn="description">
+            Description <p-sortIcon field="description"></p-sortIcon>
+          </th>
+          <th style="background-color: #edf2f7" pSortableColumn="creationDate">
+            Creation date <p-sortIcon field="creationDate"></p-sortIcon>
+          </th>
+          <th style="background-color: #edf2f7" pSortableColumn="type">
+            Type <p-sortIcon field="type"></p-sortIcon>
+          </th>
+        </tr>
+        <tr>
+          <th></th>
+          <th>
+            <span class="p-input-icon-right">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="
+                  tablearchivedProcesses.filter(
+                    $any($event.target)?.value,
+                    'name',
+                    'contains'
+                  )
+                "
+                [value]="$any(tablearchivedProcesses.filters['name'])?.value"
+                placeholder="Search by name"
+                class="p-column-filter p-inputtext-sm"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="p-input-icon-right">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="
+                  tablearchivedProcesses.filter(
+                    $any($event.target)?.value,
+                    'description',
+                    'contains'
+                  )
+                "
+                [value]="
+                  $any(tablearchivedProcesses.filters['description'])?.value
+                "
+                placeholder="Search by description"
+                class="p-column-filter p-inputtext-sm"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="p-input-icon-right">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="
+                  tablearchivedProcesses.filter(
+                    $any($event.target)?.value,
+                    'creationDate',
+                    'contains'
+                  )
+                "
+                [value]="
+                  $any(tablearchivedProcesses.filters['creationDate'])?.value
+                "
+                placeholder="Search by date"
+                class="p-column-filter p-inputtext-sm"
+              />
+            </span>
+          </th>
+          <th>
+            <span class="p-input-icon-right">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="
+                  tablearchivedProcesses.filter(
+                    $any($event.target)?.value,
+                    'type',
+                    'contains'
+                  )
+                "
+                [value]="$any(tablearchivedProcesses.filters['type'])?.value"
+                placeholder="Search by type"
+                class="p-column-filter p-inputtext-sm"
+              />
+            </span>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-process>
+        <tr>
+          <td>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-eye"
+              class="p-button-rounded p-button-text p-button-success mr-2"
+            ></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-text p-button-secondary"
+              (click)="confirmDeleteProcess(process.id)"
+            ></button>
+          </td>
+          <td class="text-center">{{ process.name }}</td>
+          <td class="text-center">{{ process.description }}</td>
+          <td class="text-center">
+            {{ process.creationDate | date: "dd/MM/yyyy HH:mm" }}
+          </td>
+          <td class="text-center">{{ process.type }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">No archived inventory processes were found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

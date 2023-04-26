@@ -1,0 +1,116 @@
+<form
+  #configurationTextInputForm="ngForm"
+  (ngSubmit)="submitConfiguration(configurationTextInputForm.value)"
+>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="label">Label : </label>
+      <input
+        type="text"
+        id="label"
+        name="labelInput"
+        class="requiredInput"
+        [ngModel]="pageObject.fieldResponse.label"
+        pInputText
+        ngModel
+        required
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="name">Name :</label>
+      <input
+        type="text"
+        id="name"
+        name="nameInput"
+        class="requiredInput"
+        [ngModel]="pageObject.fieldResponse.name"
+        ngModel
+        pInputText
+        required
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="placeholder">Placeholder :</label>
+      <input
+        type="text"
+        id="placeholder"
+        [ngModel]="pageObject.fieldResponse.placeholder"
+        name="placeholderInput"
+        ngModel
+        pInputText
+      />
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="type">Type :</label>
+      <p-dropdown
+        id="type"
+        name="typeInput"
+        ngModel
+        class="requiredDropdown"
+        placeholder="Pick a type "
+        [showClear]="true"
+        [required]="true"
+        [(ngModel)]="pageObject.fieldResponse.textInputType"
+        [options]="pageObject.typeInputs"
+      ></p-dropdown>
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="min">Min :</label>
+      <input
+        type="text"
+        id="min"
+        name="minInput"
+        [ngModel]="pageObject.fieldResponse.textInputMin"
+        ngModel
+        pInputText
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="max">Max :</label>
+      <input
+        type="text"
+        id="max"
+        name="maxInput"
+        [ngModel]="pageObject.fieldResponse.textInputMax"
+        ngModel
+        pInputText
+      />
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-8 md:col-4">
+      <label for="validationType">Validation type :</label>
+      <p-dropdown
+        id="validationType"
+        name="validationTypeInput"
+        ngModel
+        [(ngModel)]="pageObject.fieldResponse.validationRegex"
+        placeholder="Choose ...."
+        [showClear]="true"
+        [options]="pageObject.validationRegex"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class="field-checkbox ml-4">
+    <p-checkbox
+      [binary]="true"
+      id="isRequired"
+      name="isRequiredCheck"
+      [ngModel]="pageObject.fieldResponse.isRequired"
+      ngModel
+    ></p-checkbox>
+    <label for="isRequired">The field is mandatory</label>
+  </div>
+  <div class="flex justify-content-end flex-wrap">
+    <button
+      pButton
+      pRipple
+      type="submit"
+      class="ml-3 mr-4 h-2rem btn-enregistrer"
+      label="Save"
+      icon="pi pi-check"
+    ></button>
+  </div>
+</form>

@@ -1,0 +1,76 @@
+<form
+  #configurationFileOutputForm="ngForm"
+  (ngSubmit)="submitConfiguration(configurationFileOutputForm.value)"
+>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="label">Label : </label>
+      <input
+        type="text"
+        id="label"
+        name="labelInput"
+        class="requiredInput"
+        pInputText
+        [ngModel]="pageObject.fieldResponse.label"
+        ngModel
+        required
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="type">Type : </label>
+      <p-dropdown
+        id="type"
+        name="typeInput"
+        ngModel
+        class="requiredDropdown"
+        placeholder="Choose ..... "
+        [showClear]="true"
+        [required]="true"
+        [options]="pageObject.typeFiles"
+        [(ngModel)]="pageObject.fieldResponse.fileOutputType"
+        (onChange)="displayListExtension($event)"
+        appendTo="body"
+      ></p-dropdown>
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="extension">Extension : </label>
+      <p-dropdown
+        id="extension"
+        name="extensionInput"
+        ngModel
+        [required]="true"
+        class="requiredDropdown"
+        placeholder="Choose ..... "
+        [showClear]="true"
+        [ngModel]="pageObject.fieldResponse.fileOutputExtension"
+        [options]="pageObject.extensions"
+        appendTo="body"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-8 md:col-4">
+      <label for="path">Path: </label>
+      <input
+        type="text"
+        id="path"
+        name="pathInput"
+        class="requiredInput"
+        [ngModel]="pageObject.fieldResponse.filePath"
+        pInputText
+        ngModel
+        required
+      />
+    </div>
+  </div>
+  <div class="flex justify-content-end flex-wrap">
+    <button
+      pButton
+      pRipple
+      type="submit"
+      class="ml-3 mr-4 h-2rem btn-enregistrer"
+      label="Save"
+      icon="pi pi-check"
+    ></button>
+  </div>
+</form>

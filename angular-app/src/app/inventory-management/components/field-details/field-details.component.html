@@ -1,0 +1,629 @@
+<div class="p-fluid grid formgrid ml-3 mr-3">
+  <div class="field col-4 md:col-4">
+    <label for="label">Label :</label>
+    <input
+      id="label"
+      name="labelInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.field.label"
+      pInputText
+    />
+  </div>
+  <div class="field col-4 md:col-4">
+    <label for="position">Position :</label>
+    <input
+      id="position"
+      name="positionInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.field.position"
+      pInputText
+    />
+  </div>
+  <div class="field col-4 md:col-4">
+    <label for="category">Category :</label>
+    <input
+      *ngIf="pageObject.field.category === pageObject.dropdown"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.dropDownTitle"
+      pInputText
+    />
+    <input
+      *ngIf="pageObject.field.category === pageObject.textOutput"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.textOutputTitle"
+      pInputText
+    />
+    <input
+      *ngIf="pageObject.field.category === pageObject.textInput"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.textInputTitle"
+      pInputText
+    />
+    <input
+      *ngIf="pageObject.field.category === pageObject.dateInput"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.dateInputTitle"
+      pInputText
+    />
+    <input
+      *ngIf="pageObject.field.category === pageObject.link"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.linkTitle"
+      pInputText
+    />
+    <input
+      *ngIf="pageObject.field.category === pageObject.fileOutPut"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.fileOutputTitle"
+      pInputText
+    />
+    <input
+      *ngIf="pageObject.field.category === pageObject.fileInput"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.fileInputTitle"
+      pInputText
+    />
+    <input
+      *ngIf="pageObject.field.category === pageObject.checkBoxes"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.checkBoxesTitle"
+      pInputText
+    />
+    <input
+      *ngIf="pageObject.field.category === pageObject.radioButton"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.radioButtonTitle"
+      pInputText
+    />
+    <input
+      *ngIf="pageObject.field.category === pageObject.slider"
+      id="category"
+      name="categoryInput"
+      type="text"
+      [disabled]="true"
+      style="opacity: initial"
+      [ngModel]="pageObject.sliderTitle"
+      pInputText
+    />
+  </div>
+</div>
+<!-- #region text output-->
+<ng-template [ngIf]="pageObject.field.category === pageObject.textOutput">
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-8 md:col-4">
+      <label for="text">Text :</label>
+      <textarea
+        id="text"
+        name="textInput"
+        rows="3"
+        cols="80"
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.value"
+        pInputTextarea
+      ></textarea>
+    </div>
+  </div>
+</ng-template>
+<!-- #endregion -->
+<!-- #region text input-->
+<ng-template [ngIf]="pageObject.field.category === pageObject.textInput">
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="name">Name :</label>
+      <input
+        type="text"
+        id="name"
+        name="nameInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.name"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="placeholder">Placeholder :</label>
+      <input
+        type="text"
+        id="placeholder"
+        name="placeholderInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.placeholder"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="type">Type :</label>
+      <input
+        id="type"
+        name="typeInput"
+        pInputText
+        type="text"
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.type"
+      />
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="min">Min :</label>
+      <input
+        type="text"
+        id="min"
+        name="minInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.min"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="max">Max :</label>
+      <input
+        type="text"
+        id="max"
+        name="maxInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.max"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="validationType">Validation type :</label>
+      <input
+        id="validationType"
+        name="validationTypeInput"
+        type="text"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.validationRegex"
+      />
+    </div>
+  </div>
+  <div class="field-checkbox ml-4">
+    <p-checkbox
+      [binary]="true"
+      id="isRequired"
+      name="isRequiredCheck"
+      [ngModel]="pageObject.field.isRequired"
+      [disabled]="true"
+    ></p-checkbox>
+    <label for="isRequired">Is mandatory</label>
+  </div>
+</ng-template>
+<!-- #endregion -->
+<!-- #region slider-->
+<ng-template [ngIf]="pageObject.field.category === pageObject.slider">
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="name">Name :</label>
+      <input
+        type="text"
+        id="name"
+        name="nameInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.name"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="min">Min:</label>
+      <input
+        id="min"
+        name="minInput"
+        pInputText
+        type="text"
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.min"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="max">Max:</label>
+      <input
+        id="max"
+        name="maxInput"
+        pInputText
+        type="text"
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.max"
+      />
+    </div>
+  </div>
+  <div class="field-checkbox ml-4">
+    <p-checkbox
+      [binary]="true"
+      id="isRequired"
+      name="isRequiredCheck"
+      [disabled]="true"
+      [ngModel]="pageObject.field.isRequired"
+    ></p-checkbox>
+    <label for="isRequired">Is mandatory</label>
+  </div>
+</ng-template>
+<!-- #endregion -->
+<!-- #region link-->
+<ng-template [ngIf]="pageObject.field.category === pageObject.link">
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="displayName">Display Name : </label>
+      <input
+        type="text"
+        id="displayName"
+        name="displayNameInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.displayName"
+      />
+    </div>
+    <div class="field col-8 md:col-4">
+      <label for="link">Link : </label>
+      <input
+        type="text"
+        id="link"
+        name="linkInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.url"
+      />
+    </div>
+  </div>
+</ng-template>
+<!-- #endregion -->
+<!-- #region file output-->
+<ng-template [ngIf]="pageObject.field.category === pageObject.fileOutPut">
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="type">Type : </label>
+      <input
+        id="type"
+        name="typeInput"
+        pInputText
+        type="text"
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.type"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="extension">Extension : </label>
+      <input
+        id="extension"
+        name="extensionInput"
+        pInputText
+        type="text"
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.extension"
+      />
+    </div>
+  </div>
+
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <ng-template [ngIf]="pageObject.nullSource === false">
+      <div class="field col-4 md:col-4">
+        <label for="source">Data source : </label>
+        <input
+          id="source"
+          name="sourceInput"
+          pInputText
+          type="text"
+          [disabled]="true"
+          style="opacity: initial"
+          [ngModel]="pageObject.field.dataSource.name"
+        />
+      </div>
+    </ng-template>
+    <div class="field col-8 md:col-4">
+      <label for="path">Path: </label>
+      <input
+        type="text"
+        id="path"
+        name="pathInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.filePath"
+      />
+    </div>
+  </div>
+</ng-template>
+<!-- #endregion -->
+<!-- #region file input-->
+<ng-template [ngIf]="pageObject.field.category === pageObject.fileInput">
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="name">Name :</label>
+      <input
+        type="text"
+        id="name"
+        name="nameInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.name"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="type">Type :</label>
+      <input
+        id="type"
+        name="typeInput"
+        pInputText
+        type="text"
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.type"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="extension">Extension :</label>
+      <input
+        id="extension"
+        name="extensionInput"
+        type="text"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.extension"
+      />
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="minSize">Min size :</label>
+      <input
+        id="minSize"
+        name="minSizeInput"
+        type="text"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.minSize"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="maxSize">Max size :</label>
+      <input
+        id="maxSize"
+        name="maxSizeInput"
+        type="text"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.maxSize"
+      />
+    </div>
+  </div>
+  <div class="field-checkbox ml-4">
+    <p-checkbox
+      [binary]="true"
+      id="isRequired"
+      [disabled]="true"
+      [ngModel]="pageObject.field.isRequired"
+    ></p-checkbox>
+    <label for="isRequired">Is mandatory</label>
+  </div>
+</ng-template>
+<!-- #endregion -->
+<!-- #region dropdown choice buttons-->
+<ng-template
+  [ngIf]="
+    pageObject.field.category === pageObject.dropdown ||
+    pageObject.field.category === pageObject.checkBoxes ||
+    pageObject.field.category === pageObject.radioButton
+  "
+>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="name">Name : </label>
+      <input
+        type="text"
+        id="name"
+        name="nameInput"
+        [disabled]="true"
+        style="opacity: initial"
+        pInputText
+        [ngModel]="pageObject.field.name"
+      />
+    </div>
+    <ng-template [ngIf]="pageObject.nullSource === false">
+      <div class="field col-4 md:col-4">
+        <label for="source">Data source: </label>
+        <input
+          id="source"
+          name="sourceInput"
+          [disabled]="true"
+          style="opacity: initial"
+          pInputText
+          type="text"
+          [ngModel]="pageObject.field.dataSource.name"
+        />
+      </div>
+    </ng-template>
+  </div>
+  <div class="ml-4 pt-3">
+    <h4>Values</h4>
+  </div>
+  <p-table
+    #tableOptions
+    [value]="pageObject.field.options"
+    dataKey="id"
+    styleClass="p-datatable-sm ml-3 mr-3"
+    responsiveLayout="scroll"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [rowHover]="true"
+    [resizableColumns]="true"
+    [rowsPerPageOptions]="[5, 10, 15]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th
+          style="background-color: #edf2f7"
+          class="text-center"
+          pSortableColumn="value"
+        >
+          Value <p-sortIcon field="value"></p-sortIcon>
+        </th>
+        <th
+          style="background-color: #edf2f7"
+          pSortableColumn="isDefault"
+          class="text-center"
+        >
+          Default <p-sortIcon field="isDefault"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-option>
+      <tr>
+        <td class="text-center">{{ option.value }}</td>
+        <td class="text-center">
+          <p-avatar
+            *ngIf="option.isDefault == true"
+            icon="pi pi-check"
+            styleClass="mr-2"
+            [style]="{ 'background-color': '#ffffff', color: '#39C360' }"
+            shape="circle"
+          ></p-avatar>
+          <p-avatar
+            *ngIf="option.isDefault != true"
+            icon="pi pi-times"
+            styleClass="mr-2"
+            [style]="{ 'background-color': '#ffffff', color: '#EA0D1A' }"
+            shape="circle"
+          ></p-avatar>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">No value found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div class="p-fluid grid formgrid ml-3 mt-3">
+    <ng-template [ngIf]="pageObject.field.category === pageObject.dropdown">
+      <div class="field-checkbox col-6">
+        <p-checkbox
+          [binary]="true"
+          id="isMultiselect"
+          name="isMultiselect"
+          [ngModel]="pageObject.field.isMultiselect"
+          [disabled]="true"
+        ></p-checkbox>
+        <label for="isMultiselect">Sélection multiple</label>
+      </div>
+    </ng-template>
+
+    <div class="field-checkbox col-6">
+      <p-checkbox
+        [binary]="true"
+        id="isRequired"
+        name="isRequired"
+        [ngModel]="pageObject.field.isRequired"
+        [disabled]="true"
+      ></p-checkbox>
+      <label for="isRequired">Is mandatory</label>
+    </div>
+  </div>
+</ng-template>
+<!-- #endregion -->
+<!-- #region date input-->
+<ng-template [ngIf]="pageObject.field.category === pageObject.dateInput">
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="name">Name :</label>
+      <input
+        type="text"
+        id="name"
+        name="nameInput"
+        pInputText
+        [disabled]="true"
+        style="opacity: initial"
+        [ngModel]="pageObject.field.name"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="min">Min :</label>
+      <p-calendar
+        id="min"
+        name="minInput"
+        [showTime]="true"
+        [disabled]="true"
+        [ngModel]="pageObject.field.minDate"
+      ></p-calendar>
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="type">Max :</label>
+      <p-calendar
+        id="max"
+        name="maxInput"
+        [showTime]="true"
+        [disabled]="true"
+        [ngModel]="pageObject.field.maxDate"
+      ></p-calendar>
+    </div>
+  </div>
+  <div class="field-checkbox ml-4">
+    <p-checkbox
+      [binary]="true"
+      id="isRequired"
+      name="isRequiredCheck"
+      [ngModel]="pageObject.field.isRequired"
+      [disabled]="true"
+    ></p-checkbox>
+    <label for="isRequired">Is mandatory</label>
+  </div>
+</ng-template>
+<!-- #endregion -->

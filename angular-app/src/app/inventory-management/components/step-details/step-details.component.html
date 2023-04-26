@@ -1,0 +1,232 @@
+<div class="p-d-inline-flex box">
+  <div class="flex mt-5 pt-3 justify-content-end flex-wrap">
+    <button
+      pButton
+      pRipple
+      type="button"
+      class="h-2rem mr-3 btn-return"
+      label="Retourner"
+      icon="pi pi-arrow-circle-left"
+      routerLink="/processes/processDetails"
+    ></button>
+  </div>
+  <div class="ml-4 pt-3">
+    <h3>Step</h3>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="nameStep">Step name :</label>
+      <input
+        type="text"
+        id="nameStep"
+        name="nameStepInput"
+        pInputText
+        style="opacity: initial"
+        [disabled]="true"
+        [ngModel]="pageObject.step.name"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="CreationDate">Creation date:</label>
+      <p-calendar
+        id="CreationDate"
+        name="CreationDateInput"
+        [showTime]="true"
+        [disabled]="true"
+        [ngModel]="pageObject.step.creationDate"
+      ></p-calendar>
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="description">Step description: </label>
+      <textarea
+        id="description"
+        name="descriptionInput"
+        rows="3"
+        cols="80"
+        style="opacity: initial"
+        pInputTextarea
+        [disabled]="true"
+        [ngModel]="pageObject.step.description"
+      ></textarea>
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="previousStep">Previous step :</label>
+      <input
+        type="text"
+        id="previousStep"
+        name="previousStepInput"
+        pInputText
+        style="opacity: initial"
+        [disabled]="true"
+        [ngModel]="pageObject.step.previousStepName"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="nextStep">Next step:</label>
+      <input
+        type="text"
+        id="nextStep"
+        name="nextStepInput"
+        pInputText
+        style="opacity: initial"
+        [disabled]="true"
+        [ngModel]="pageObject.step.nextStepName"
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="FieldsCount">Number of fields :</label>
+      <input
+        type="text"
+        id="FieldsCount"
+        style="opacity: initial"
+        name="FieldsCountInput"
+        pInputText
+        [disabled]="true"
+        [ngModel]="pageObject.step.fieldsCount"
+      />
+    </div>
+  </div>
+  <hr />
+  <div class="ml-4 pt-3">
+    <h3>Step fields</h3>
+  </div>
+  <p-table
+    #tableFields
+    [value]="pageObject.step.stepFields"
+    dataKey="id"
+    styleClass="p-datatable-sm ml-3 mr-3"
+    responsiveLayout="scroll"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [rowHover]="true"
+    [resizableColumns]="true"
+    [rowsPerPageOptions]="[5, 10, 15]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="background-color: #edf2f7">Actions</th>
+        <th style="background-color: #edf2f7" pSortableColumn="label">
+          Label <p-sortIcon field="label"></p-sortIcon>
+        </th>
+        <th style="background-color: #edf2f7" pSortableColumn="position">
+          Position <p-sortIcon field="position"></p-sortIcon>
+        </th>
+        <th style="background-color: #edf2f7" pSortableColumn="category">
+          Category <p-sortIcon field="category"></p-sortIcon>
+        </th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="
+                tableFields.filter(
+                  $any($event.target)?.value,
+                  'label',
+                  'contains'
+                )
+              "
+              [value]="$any(tableFields.filters['label'])?.value"
+              placeholder="Search by name"
+              class="p-column-filter p-inputtext-sm"
+            />
+          </span>
+        </th>
+        <th></th>
+        <th>
+          <p-columnFilter
+            field="category"
+            matchMode="equals"
+            [showMenu]="false"
+          >
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <p-dropdown
+                [ngModel]="value"
+                optionValue="value"
+                optionLabel="label"
+                [options]="pageObject.FieldsType"
+                (onChange)="filter($event.value)"
+                placeholder="Any"
+                [showClear]="true"
+                appendTo="body"
+              >
+                <ng-template let-option pTemplate="item">
+                  <span
+                    [class]="'process-badge state-' + option.value | lowercase"
+                    >{{ option.label }}</span
+                  >
+                </ng-template>
+              </p-dropdown>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-field>
+      <tr>
+        <td>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-eye"
+            class="p-button-rounded p-button-text mr-2"
+            (click)="openDetailsField(field)"
+          ></button>
+        </td>
+        <td class="text-center">{{ field.label }}</td>
+        <td class="text-center">
+          {{ field.position }}
+        </td>
+        <td [ngSwitch]="field.category">
+          <span *ngSwitchCase="dropDown" class="text-center">{{
+            pageObject.dropDownTitle
+          }}</span>
+          <span *ngSwitchCase="slider" class="text-center">{{
+            pageObject.sliderTitle
+          }}</span>
+          <span *ngSwitchCase="radioButton" class="text-center">{{
+            pageObject.radioButtonTitle
+          }}</span>
+          <span *ngSwitchCase="checkBoxes" class="text-center">
+            {{ pageObject.checkBoxesTitle }}
+          </span>
+          <span *ngSwitchCase="fileInput" class="text-center">
+            {{ pageObject.fileInputTitle }}
+          </span>
+          <span *ngSwitchCase="fileOutput" class="text-center">
+            {{ pageObject.fileOutputTitle }}
+          </span>
+          <span *ngSwitchCase="textInput" class="text-center">{{
+            pageObject.textInputTitle
+          }}</span>
+          <span *ngSwitchCase="textOutput" class="text-center">
+            {{ pageObject.textOutputTitle }}
+          </span>
+          <span *ngSwitchCase="link" class="text-center">{{
+            pageObject.linkTitle
+          }}</span>
+          <span *ngSwitchCase="dateInput" class="text-center">{{
+            pageObject.dateInputTitle
+          }}</span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">No field was found</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

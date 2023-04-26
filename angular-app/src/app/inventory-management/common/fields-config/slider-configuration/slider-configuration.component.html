@@ -1,0 +1,75 @@
+<form
+  #configurationSliderForm="ngForm"
+  (ngSubmit)="submitConfiguration(configurationSliderForm.value)"
+>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-6 md:col-4">
+      <label for="label">Label : </label>
+      <input
+        type="text"
+        id="label"
+        name="labelInput"
+        class="requiredInput"
+        pInputText
+        ngModel
+        [ngModel]="pageObject.fieldResponse.label"
+        required
+      />
+    </div>
+    <div class="field col-6 md:col-4">
+      <label for="name">Name :</label>
+      <input
+        type="text"
+        id="name"
+        name="nameInput"
+        class="requiredInput"
+        ngModel
+        [ngModel]="pageObject.fieldResponse.name"
+        pInputText
+        required
+      />
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-6 md:col-4">
+      <label for="min">Min:</label>
+      <p-inputNumber
+        id="min"
+        name="minInput"
+        ngModel
+        [ngModel]="pageObject.fieldResponse.min"
+        [required]="true"
+      ></p-inputNumber>
+    </div>
+    <div class="field col-6 md:col-4">
+      <label for="max">Max:</label>
+      <p-inputNumber
+        id="max"
+        name="maxInput"
+        [ngModel]="pageObject.fieldResponse.max"
+        ngModel
+        [required]="true"
+      ></p-inputNumber>
+    </div>
+  </div>
+  <div class="field-checkbox ml-4">
+    <p-checkbox
+      [binary]="true"
+      id="isRequired"
+      name="isRequiredCheck"
+      ngModel
+      [ngModel]="pageObject.fieldResponse.isRequired"
+    ></p-checkbox>
+    <label for="isRequired">The field is mandatory</label>
+  </div>
+  <div class="flex justify-content-end flex-wrap">
+    <button
+      pButton
+      pRipple
+      type="submit"
+      class="ml-3 mr-4 h-2rem btn-enregistrer"
+      label="Save"
+      icon="pi pi-check"
+    ></button>
+  </div>
+</form>

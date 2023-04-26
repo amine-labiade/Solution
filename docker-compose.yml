@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql1
+    environment:
+      MSSQL_SA_PASSWORD: <YourStrong@Passw0rd>
+      ACCEPT_EULA: Y
+      MSSQL_RPC_PORT: 135
+    ports:
+      - "1433:1433"
+  webapi:
+    build:
+      context: ./dotnet-restapi/InventoryManagementApi
+    ports:
+      - "4433:80"
+    depends_on:
+      - db
+  angular:
+    build: 
+      context: ./angular-app
+    ports:
+      - "4200:4200"
+    depends_on:
+      - webapi

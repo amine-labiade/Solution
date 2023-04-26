@@ -1,0 +1,10 @@
+h3 {
+    color: whitesmoke;
+    padding: 20px 20px 10px 10px;
+}
+
+.header-container {
+    /*background-image: linear-gradient(to right, rgb(41, 56, 106), #125DA4); */
+    background-color: #125DA4; 
+    height: 65px;
+}

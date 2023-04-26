@@ -1,0 +1,46 @@
+<form
+  #configurationTextOuputtForm="ngForm"
+  (ngSubmit)="submitConfiguration(configurationTextOuputtForm.value)"
+>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-12 md:col-4">
+      <label for="label">Label : </label>
+      <input
+        type="text"
+        id="label"
+        name="labelInput"
+        class="requiredInput"
+        pInputText
+        ngModel
+        [ngModel]="pageObject.fieldResponse.label"
+        required
+      />
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-12 md:col-4">
+      <label for="text">Text :</label>
+      <textarea
+        id="text"
+        name="textInput"
+        rows="3"
+        cols="80"
+        pInputTextarea
+        class="requiredInput"
+        ngModel
+        [ngModel]="pageObject.fieldResponse.value"
+        required
+      ></textarea>
+    </div>
+  </div>
+  <div class="flex justify-content-end flex-wrap">
+    <button
+      pButton
+      pRipple
+      type="submit"
+      class="ml-3 mr-4 h-2rem btn-enregistrer"
+      label="Save"
+      icon="pi pi-check"
+    ></button>
+  </div>
+</form>

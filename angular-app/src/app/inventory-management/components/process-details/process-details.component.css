@@ -1,0 +1,58 @@
+:host {
+    overflow-y:scroll;
+    background-color:#EDF2F7;
+    height: 100%;
+}
+.box
+{
+    background-color:white;
+    margin-top: 20px ;
+    width: 90%;
+    height: auto;
+    margin-left: 6%;
+    margin-right: auto;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+hr
+{
+    border: 1px solid lightgray;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-return 
+{
+    background-color: #1F7ACE;
+    border-color: #1F7ACE;
+}
+
+
+.process-badge {
+    border-radius: 2px;
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+.state-published {
+    font-weight: bold;
+    color: rgb(17, 70, 17);
+    background-color: rgb(115, 199, 115);
+}
+
+.state-unpublished {
+    font-weight: bold;
+    color: rgb(97, 17, 17);
+    background-color: rgb(208, 111, 127)
+}
+.state-scheduled {
+    font-weight: bold;
+    color: rgb(116, 105, 38);
+    background-color: rgb(219, 213, 135);
+
+}
+:field ::ng-deep .p-calendar { 
+    color: red;
+}

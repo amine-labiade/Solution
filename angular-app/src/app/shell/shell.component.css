@@ -1,0 +1,13 @@
+* { 
+    margin : 0;
+    padding : 0;
+}
+
+.container {
+    height : 100vh;
+    overflow-y : hidden;
+}
+
+.content {
+    overflow-y: scroll ;
+}

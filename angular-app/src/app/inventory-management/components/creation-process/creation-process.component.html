@@ -1,0 +1,382 @@
+<div class="p-d-inline-flex box">
+  <p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+  ></p-confirmDialog>
+  <p-toast position="top-right"></p-toast>
+  <form
+    #creationProcessForm="ngForm"
+    (ngSubmit)="SubmitDataProcess(creationProcessForm.value)"
+  >
+    <div class="flex mt-5 pt-3 justify-content-end flex-wrap">
+      <button
+        pButton
+        pRipple
+        type="button"
+        class="h-2rem btn-annuler"
+        label="Cancel"
+        icon="pi pi-times"
+        (click)="cancelToProcesses()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        type="submit"
+        class="ml-3 mr-4 h-2rem btn-enregistrer"
+        label="Save"
+        icon="pi pi-check"
+      ></button>
+    </div>
+    <div class="ml-4 pt-3">
+      <h3>Inventory process</h3>
+    </div>
+    <div class="p-fluid grid formgrid ml-3 mr-3">
+      <div class="field col-4 md:col-4">
+        <label for="nameProcess">Inventory process name</label>
+        <input
+          type="text"
+          id="nameProcess"
+          name="nameProcessInput"
+          pInputText
+          [(ngModel)]="pageObject.processToDisplay.name"
+          ngModel
+          required
+        />
+      </div>
+      <div class="field col-4 md:col-4">
+        <label for="typeProcess">Inventory process type</label>
+        <p-dropdown
+          id="typeProcess"
+          class="requiredDropdown"
+          name="typeProcessInput"
+          ngModel
+          [(ngModel)]="pageObject.processToDisplay.typeId"
+          [options]="pageObject.inventoryTypes"
+          placeholder="Pick a type "
+          [showClear]="true"
+          [required]="true"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+      <div class="field col-4 md:col-4">
+        <label for="startDate">Start date :</label>
+        <p-calendar
+          id="startDate"
+          name="startDateInput"
+          [showIcon]="true"
+          [showTime]="true"
+          ngModel
+          [(ngModel)]="pageObject.processToDisplay.publishingDate"
+          appendTo="body"
+        ></p-calendar>
+        <p-message
+          *ngIf="this.pageObject.stateValidationDate === startDateIsNull"
+          severity="warn"
+          text="Start date cannot be null"
+          styleClass="mt-1"
+        ></p-message>
+        <p-message
+          *ngIf="
+            this.pageObject.stateValidationDate === startDateGreaterEndDate
+          "
+          severity="warn"
+          text="Start date cannot be greater than or equal to end date"
+          styleClass="mt-1"
+        ></p-message>
+      </div>
+    </div>
+    <div class="p-fluid grid formgrid ml-3 mr-3">
+      <div class="field col-4 md:col-4">
+        <label for="endDate">End date:</label>
+        <p-calendar
+          id="endDate"
+          name="endDateInput"
+          [showIcon]="true"
+          [showTime]="true"
+          ngModel
+          [(ngModel)]="pageObject.processToDisplay.unpublishingDate"
+          appendTo="body"
+        ></p-calendar>
+        <p-message
+          *ngIf="this.pageObject.stateValidationDate === endDateIsNull"
+          severity="warn"
+          text="End date cannot be null"
+          styleClass="mt-1"
+        ></p-message>
+      </div>
+      <div class="field col-4 md:col-4">
+        <label for="userSource">Users data source:</label>
+        <p-dropdown
+          id="userSource"
+          name="userSourceInput"
+          ngModel
+          [options]="pageObject.dataSources"
+          (onChange)="onChange($event)"
+          (onClear)="onClear($event)"
+          placeholder="Pick a data source"
+          [(ngModel)]="pageObject.processToDisplay.dataSourceId"
+          [showClear]="true"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+      <div class="field col-4 md:col-4">
+        <label for="users">Users :</label>
+        <p-multiSelect
+          id="users"
+          name="usersInput"
+          [options]="pageObject.users"
+          defaultLabel="Pick the users"
+          optionLabel="username"
+          selectedItemsLabel="{0} items selected"
+          [(ngModel)]="pageObject.defaultsUsers"
+          appendTo="body"
+        ></p-multiSelect>
+      </div>
+    </div>
+    <div class="p-fluid grid formgrid ml-3 mr-3">
+      <div class="field col-8 md:col-4">
+        <label for="description">Inventory process description : </label>
+        <textarea
+          id="description"
+          name="descriptionInput"
+          rows="3"
+          cols="80"
+          pInputTextarea
+          ngModel
+          [(ngModel)]="pageObject.processToDisplay.description"
+        ></textarea>
+      </div>
+    </div>
+  </form>
+  <hr />
+  <div class="ml-4">
+    <h3>Steps</h3>
+  </div>
+  <p-table
+    #tableSteps
+    [value]="pageObject.steps"
+    dataKey="id"
+    styleClass="p-datatable-sm ml-3 mr-3"
+    responsiveLayout="scroll"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [rowHover]="true"
+    [resizableColumns]="true"
+    [rowsPerPageOptions]="[5, 10, 15]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="background-color: #edf2f7">Actions</th>
+        <th style="background-color: #edf2f7" pSortableColumn="name">
+          Step name <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th style="background-color: #edf2f7" pSortableColumn="creationDate">
+          Creation date <p-sortIcon field="creationDate"></p-sortIcon>
+        </th>
+        <th style="background-color: #edf2f7" pSortableColumn="description">
+          Description <p-sortIcon field="description"></p-sortIcon>
+        </th>
+        <th
+          style="background-color: #edf2f7"
+          pSortableColumn="nextInventoryStepName"
+        >
+          Next step
+          <p-sortIcon field="nextInventoryStepName"></p-sortIcon>
+        </th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="
+                tableSteps.filter(
+                  $any($event.target)?.value,
+                  'name',
+                  'contains'
+                )
+              "
+              [value]="$any(tableSteps.filters['name'])?.value"
+              placeholder="Search by name"
+              class="p-column-filter p-inputtext-sm"
+            />
+          </span>
+        </th>
+        <th>
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <p-calendar
+              (onSelect)="
+                tableSteps.filter(
+                  $any($event.target)?.value,
+                  'creationDate',
+                  'contains'
+                )
+              "
+              placeholder="Search by date"
+              class="p-column-filter p-inputtext-sm"
+              [showTime]="true"
+            ></p-calendar>
+          </span>
+        </th>
+        <th>
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="
+                tableSteps.filter(
+                  $any($event.target)?.value,
+                  'description',
+                  'contains'
+                )
+              "
+              [value]="$any(tableSteps.filters['description'])?.value"
+              placeholder="Search by description"
+              class="p-column-filter p-inputtext-sm"
+            />
+          </span>
+        </th>
+        <th>
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="
+                tableSteps.filter(
+                  $any($event.target)?.value,
+                  'nextInventoryStepName',
+                  'contains'
+                )
+              "
+              [value]="$any(tableSteps.filters['nextInventoryStepName'])?.value"
+              placeholder="Search by step"
+              class="p-column-filter p-inputtext-sm"
+            />
+          </span>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-step>
+      <tr>
+        <td>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-text mr-2"
+            (click)="goToUpdateStep(step.id)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-secondary p-button-text"
+            (click)="confirmDeleteStep(step.id)"
+          ></button>
+        </td>
+        <td class="text-center">{{ step.name }}</td>
+        <td class="text-center">
+          {{ step.creationDate | date: "dd/MM/yyyy HH:mm" }}
+        </td>
+        <td>{{ step.description }}</td>
+        <td class="text-center">
+          {{ step.nextInventoryStepName || no_next_step_available_en }}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">No steps were found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <button
+    pButton
+    pRipple
+    type="button"
+    class="h-2rem ml-3 mt-3 btn-addStep"
+    label="Step"
+    icon="pi pi-plus"
+    (click)="navigateAndStoreProcessLocally()"
+  ></button>
+  <hr />
+  <div class="ml-4">
+    <h3>Users</h3>
+  </div>
+  <p-table
+    #tableUsers
+    [value]="pageObject.defaultsUsers"
+    dataKey="id"
+    styleClass="p-datatable-sm ml-3 mr-3"
+    responsiveLayout="scroll"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [rowHover]="true"
+    [rowsPerPageOptions]="[5, 10, 15]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="background-color: #edf2f7" pSortableColumn="username">
+          Username <p-sortIcon field="username"></p-sortIcon>
+        </th>
+        <th style="background-color: #edf2f7" pSortableColumn="roleName">
+          Role <p-sortIcon field="roleName"></p-sortIcon>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="
+                tableUsers.filter(
+                  $any($event.target)?.value,
+                  'username',
+                  'contains'
+                )
+              "
+              [value]="$any(tableUsers.filters['username'])?.value"
+              placeholder="Search by description"
+              placeholder="Search by name"
+              class="p-column-filter p-inputtext-sm"
+            />
+          </span>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>
+          <p-avatar
+            icon="pi pi-user"
+            styleClass="mr-2"
+            shape="circle"
+            [style]="{ 'background-color': '#1F7ACE', color: '#ffffff' }"
+            size="large"
+          ></p-avatar>
+          {{ user.username }}
+        </td>
+        <td>Inventorist</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">No users were found</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

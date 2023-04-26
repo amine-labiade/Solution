@@ -1,0 +1,36 @@
+<div class="sidebar flex flex-column justify-content-between" id="sideBar">
+  <div class="my-2 text-align-start">
+    <img src="/assets/profile.png" height="110px" alt="portrait" />
+    <span style="color: white"><strong>Ami.ne</strong></span>
+    <span class="ml-4"><small>Admin</small></span>
+  </div>
+  <div class="navigator flex-grow-1 flex flex-column justify-content-between">
+    <li routerLink="/processes" routerLinkActive="active-entry">
+      <i class="pi pi-cog"></i>Inventories management
+    </li>
+    <li routerLink="/dataSources" routerLinkActive="active-entry">
+      <i class="pi pi-cloud-download"></i>Data source management
+    </li>
+    <li routerLink="/stats" routerLinkActive="active-entry">
+      <i class="pi pi-chart-bar"></i>Stats
+    </li>
+    <li routerLink="/settings" routerLinkActive="active-entry">
+      <i class="pi pi-sliders-h"></i>Settings
+    </li>
+    <li routerLink="/archives" routerLinkActive="active-entry">
+      <i class="pi pi-table"></i>Archives
+    </li>
+    <div
+      class="flex justify-content-end align-self-stretch mt-auto flex-grow-1"
+    >
+      <button
+        pButton
+        type="button"
+        class="align-self-end p-button-danger text-light"
+        routerLink="/auth"
+      >
+        <i class="pi pi-sign-out"></i>Log out
+      </button>
+    </div>
+  </div>
+</div>

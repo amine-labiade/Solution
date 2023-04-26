@@ -1,0 +1,81 @@
+:host {
+    overflow-y:scroll;
+    background-color:#EDF2F7;
+    height: 100%;
+}
+.btn-annuler .btn-addStep
+{
+    background-color: #1F7ACE;
+    border-color: #1F7ACE;
+}
+.btn-enregistrer
+{
+    background-color: #22A546;
+    border-color: #22A546;
+}
+
+.btn-enregistrer:hover {
+    background-color: #178b36
+}
+.flex
+{
+    flex-direction: row;
+}
+@media (max-width: 700px) {
+    .flex {
+      flex-direction: column;
+      align-items: center;
+      
+    }
+    .btn-annuler
+    {
+        margin-bottom: 10px;
+        width: 140px;
+        margin-right: 0.5rem;
+        
+    }
+    .btn-enregistrer
+    {
+        width: 140px;
+    }
+}
+.box
+{
+    background-color:white;
+    margin-top: 20px ;
+    width: 90%;
+    height: auto;
+    margin-left: 6%;
+    margin-right: auto;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+hr
+{
+    border: 1px solid lightgray;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input.ng-invalid
+{
+    border-left: 5px solid red;
+}
+input.ng-valid 
+{
+    border-left: 5px solid green;
+}
+
+:host  ::ng-deep  .ng-invalid.requiredDropdown   .p-dropdown  { 
+    border-left: 5px solid red;
+}
+:host ::ng-deep .ng-valid.requiredDropdown .p-dropdown { 
+    border-left: 5px solid green;
+}
+
+
+
+
+
+

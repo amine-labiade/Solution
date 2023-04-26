@@ -1,0 +1,51 @@
+<div class="overall">
+  <div class="box">
+    <div class="row justify-content-center">
+      <img
+        src="../../assets/Logo-Authentification.png"
+        class="img rounded w-30 mb-1"
+        alt="logo"
+      />
+    </div>
+    <div class="text-900 text-2xl font-semibold mb-4">S'authentifier</div>
+    <div *ngIf="spinnerVisible">
+      <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+    </div>
+    <form class="form">
+      <div class="ui-fluid">
+        <span class="p-input-icon-right">
+          <i
+            class="pi pi-user"
+            style="color: whitesmoke; margin-top: -10px"
+          ></i>
+          <input
+            type="text"
+            class="p-inputtext-sm w-18rem mb-2 border-round inputs"
+            pInputText
+            placeholder="username"
+          />
+        </span>
+        <span class="p-input-icon-right">
+          <i
+            class="pi pi-lock"
+            style="color: whitesmoke; margin-top: -10px"
+          ></i>
+          <input
+            type="password"
+            class="p-inputtext-sm w-18rem mb-2 border-round inputs"
+            pInputText
+            placeholder="Password"
+          />
+        </span>
+      </div>
+      <button
+        pButton
+        pRipple
+        type="button"
+        class="w-9 mt-2 h-2rem connect"
+        label="Login"
+        (click) = "authenticate()"
+      ></button>
+    </form>
+  </div>
+</div>

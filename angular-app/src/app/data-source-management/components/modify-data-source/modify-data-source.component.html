@@ -1,0 +1,120 @@
+<form
+  #updateSourceForm="ngForm"
+  (ngSubmit)="submitDataSourceUpdated(updateSourceForm.value)"
+>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-6 md:col-4">
+      <label for="nameSource">Name of data source: </label>
+      <input
+        type="text"
+        id="nameSource"
+        name="nameSourceInput"
+        pInputText
+        [ngModel]="pageObject.dataSource.name"
+        required
+      />
+    </div>
+    <div class="field col-6 md:col-4">
+      <label for="link">Link :</label>
+      <input
+        type="text"
+        id="link"
+        name="linkInput"
+        [ngModel]="pageObject.dataSource.connectionLink"
+        pInputText
+        required
+      />
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-6 md:col-4">
+      <label for="description">Description : </label>
+      <textarea
+        id="description"
+        name="descriptionInput"
+        rows="3"
+        cols="80"
+        pInputTextarea
+        [ngModel]="pageObject.dataSource.description"
+      ></textarea>
+    </div>
+    <div class="field col-6 md:col-4">
+      <label for="type">Type :</label>
+      <p-dropdown
+        id="type"
+        name="typeInput"
+        ngModel
+        class="requiredDropdown"
+        placeholder="Choose .... "
+        [showClear]="true"
+        [required]="true"
+        [options]="pageObject.listDataSourceTypes"
+        [(ngModel)]="pageObject.selectedValueType"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      pageObject.selectedValueType == 'Authentification basic';
+      then basicAuthentication
+    "
+  ></div>
+  <div
+    *ngIf="
+      pageObject.selectedValueType == 'Authentification avec jetons';
+      then bearerToken
+    "
+  ></div>
+  <ng-template #basicAuthentication>
+    <div class="p-fluid grid formgrid ml-3 mr-3">
+      <div class="field col-6 md:col-4">
+        <label for="IdUser">User id:</label>
+        <input
+          type="text"
+          id="IdUser"
+          name="IdUserInput"
+          pInputText
+          [ngModel]="pageObject.dataSource.userAccesId"
+          required
+        />
+      </div>
+      <div class="field col-6 md:col-4">
+        <label for="password">Password:</label>
+        <p-password
+          id="password"
+          name="passwordInput"
+          [feedback]="false"
+          [ngModel]="pageObject.dataSource.password"
+          [toggleMask]="true"
+          [required]="true"
+        ></p-password>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #bearerToken>
+    <div class="p-fluid grid formgrid ml-3 mr-3">
+      <div class="field col-6 md:col-4">
+        <label for="IdUser">Token:</label>
+        <input
+          type="text"
+          id="token"
+          name="TokenInput"
+          pInputText
+          [ngModel]="pageObject.dataSource.acessToken"
+          required
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="flex justify-content-end flex-wrap">
+    <button
+      pButton
+      pRipple
+      type="submit"
+      class="ml-3 mr-4 h-2rem btn-enregistrer"
+      label="Save"
+      icon="pi pi-check"
+    ></button>
+  </div>
+</form>

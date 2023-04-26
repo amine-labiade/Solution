@@ -1,0 +1,104 @@
+<form
+  #configurationFileInputForm="ngForm"
+  (ngSubmit)="submitConfiguration(configurationFileInputForm.value)"
+>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="label">Label : </label>
+      <input
+        type="text"
+        id="label"
+        name="labelInput"
+        class="requiredInput"
+        pInputText
+        ngModel
+        [ngModel]="pageObject.fieldResponse.label"
+        required
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="type">Type :</label>
+      <p-dropdown
+        id="type"
+        name="typeInput"
+        ngModel
+        class="requiredDropdown"
+        placeholder="Pick a type "
+        [showClear]="true"
+        [required]="true"
+        [options]="pageObject.typeFiles"
+        [ngModel]="pageObject.fieldResponse.fileInputtype"
+        (onChange)="displayListExtension($event)"
+      ></p-dropdown>
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="extension">Extension :</label>
+      <p-dropdown
+        id="extension"
+        name="extensionInput"
+        ngModel
+        class="requiredDropdown"
+        placeholder="Choose .... "
+        [showClear]="true"
+        [required]="true"
+        [(ngModel)]="pageObject.fieldResponse.fileInputExtension"
+        [options]="pageObject.extensions"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-4 md:col-4">
+      <label for="name">Name :</label>
+      <input
+        type="text"
+        id="name"
+        name="nameInput"
+        class="requiredInput"
+        ngModel
+        pInputText
+        [ngModel]="pageObject.fieldResponse.name"
+        required
+      />
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="minSize">Min size:</label>
+      <p-inputNumber
+        id="minSize"
+        name="minSizeInput"
+        ngModel
+        [ngModel]="pageObject.fieldResponse.minSize"
+        suffix=" mo"
+      ></p-inputNumber>
+    </div>
+    <div class="field col-4 md:col-4">
+      <label for="maxSize">Max size :</label>
+      <p-inputNumber
+        id="maxSize"
+        name="maxSizeInput"
+        ngModel
+        [ngModel]="pageObject.fieldResponse.maxSize"
+        suffix=" mo"
+      ></p-inputNumber>
+    </div>
+  </div>
+  <div class="field-checkbox ml-4">
+    <p-checkbox
+      [binary]="true"
+      id="isRequired"
+      name="isRequiredCheck"
+      ngModel
+      [ngModel]="pageObject.fieldResponse.isRequired"
+    ></p-checkbox>
+    <label for="isRequired">The field is mandatory</label>
+  </div>
+  <div class="flex justify-content-end flex-wrap">
+    <button
+      pButton
+      pRipple
+      type="submit"
+      class="ml-3 mr-4 h-2rem btn-enregistrer"
+      label="Save"
+      icon="pi pi-check"
+    ></button>
+  </div>
+</form>

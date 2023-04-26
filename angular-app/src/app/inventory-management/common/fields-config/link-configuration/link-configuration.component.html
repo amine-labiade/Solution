@@ -1,0 +1,56 @@
+<form
+  #configurationLinkForm="ngForm"
+  (ngSubmit)="submitConfiguration(configurationLinkForm.value)"
+>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-6 md:col-4">
+      <label for="label">Label : </label>
+      <input
+        type="text"
+        id="label"
+        name="labelInput"
+        class="requiredInput"
+        pInputText
+        [ngModel]="pageObject.fieldResponse.label"
+        ngModel
+        required
+      />
+    </div>
+    <div class="field col-6 md:col-4">
+      <label for="displayName">Display name: </label>
+      <input
+        type="text"
+        id="displayName"
+        name="displayNameInput"
+        [ngModel]="pageObject.fieldResponse.displayName"
+        pInputText
+        ngModel
+      />
+    </div>
+  </div>
+  <div class="p-fluid grid formgrid ml-3 mr-3">
+    <div class="field col-8 md:col-4">
+      <label for="link">Link : </label>
+      <input
+        type="text"
+        id="link"
+        name="linkInput"
+        class="requiredInput"
+        pInputText
+        ngModel
+        [ngModel]="pageObject.fieldResponse.url"
+        required
+      />
+    </div>
+  </div>
+  <div class="flex justify-content-end flex-wrap">
+    <button
+      pButton
+      pRipple
+      type="submit"
+      class="ml-3 mr-4 h-2rem btn-enregistrer"
+      label="Save"
+      icon="pi pi-check"
+    ></button>
+  </div>
+</form>

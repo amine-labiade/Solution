@@ -1,0 +1,85 @@
+<p-card class="rounded-top" [style]="{ margin: '2em' }">
+  <ng-template pTemplate="header">
+    <div
+      class="bg-primary d-flex flex-row d-flex justify-content-between align-items-center"
+    >
+      <div class="ml-2 text-light" *ngIf="pageObject; else label">
+        {{
+          pageObject.configuration
+            ? pageObject.configuration.fieldConfiguration.label
+            : "File output"
+        }}
+      </div>
+      <ng-template #label>
+        <div class="ml-2 text-light">File output</div>
+      </ng-template>
+      <div>
+        <button
+          pButton
+          pRipple
+          type="button"
+          icon="pi pi-cog text-light font-weight-bold"
+          class="p-button p-button-gray p-button-text"
+          (click)="emitConfig()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          icon="pi pi-trash text-light font-weight-bold"
+          class="p-button p-button-gray p-button-text"
+          (click)="emitDeletion()"
+        ></button>
+      </div>
+    </div>
+  </ng-template>
+  <div class="m-4">
+    <div
+      *ngIf="pageObject.configuration; else emptyConfigMessage"
+      class="text-center"
+    >
+      <div class="d-flex d-flex justify-content-between align-items-center">
+        <div class="p-fluid grid formgrid mr-4 ml-4">
+          <ul class="field col-12">
+            <li>
+              Type du fichier :
+              {{ pageObject.configuration.fieldConfiguration.fileOutputType }}
+            </li>
+            <li>
+              Extension :
+              {{
+                pageObject.configuration.fieldConfiguration.fileOutputExtension
+              }}
+            </li>
+            <li>
+              Chemin :
+              <a
+                href="{{
+                  pageObject.configuration.fieldConfiguration.filePath
+                }}"
+                target="_blank"
+                >{{ pageObject.configuration.fieldConfiguration.filePath }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ng-template #emptyConfigMessage>
+      <span>Please configure the field</span>
+    </ng-template>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="bg-light">
+      <div
+        class="mx-2 d-flex flex-row justify-content-between align-items-center"
+      >
+        <div>
+          <span
+            >postion : <strong>{{ droppedFieldId }}</strong></span
+          >
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-card>
