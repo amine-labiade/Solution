@@ -16,7 +16,7 @@
 The database schema will look like this 
 
 
-![db diagram](./db diagram.png "Database diagram")
+![db diagram](./dbdiagram.png "Database diagram")
 
 
 1. Afterwards, we can feed the database tables with some data, for that, connect to the database with your favorite client ( **SSMS** : SQL Server Management Studio) and run the queries you wiill find in the sql file **mockdata.sql** on the root folder
