@@ -16,11 +16,10 @@
 The database schema will look like this 
 
 
-![Diagram 1.png](:/2e06acafb06646efbfb9e99b1876cd62)
+![db diagram](./db diagram.png "Database diagram")
 
 
-
-3. Afterwards, we can feed the database tables with some data, for that, connect to the database with your favorite client ( **SSMS** : SQL Server Management Studio) and run the queries you wiill find in the sql file **mockdata.sql** on the root folder
+1. Afterwards, we can feed the database tables with some data, for that, connect to the database with your favorite client ( **SSMS** : SQL Server Management Studio) and run the queries you wiill find in the sql file **mockdata.sql** on the root folder
 <hr>
 
 <font size="5px" color="lightgreen">***You're ready to go***</font> 
