@@ -19,7 +19,7 @@ The database schema will look like this
 ![db diagram](./dbdiagram.png "Database diagram")
 
 
-1. Afterwards, we can feed the database tables with some data, for that, connect to the database with your favorite client ( **SSMS** : SQL Server Management Studio) and run the queries you wiill find in the sql file **mockdata.sql** on the root folder
+1. Afterwards, we can feed the database tables with some data, for that, connect to the database with your favorite client ( **SSMS** : SQL Server Management Studio for instance) and run the queries you wiill find in the sql file **mockdata.sql** on the root folder
 <hr>
 
 <font size="5px" color="lightgreen">***You're ready to go***</font> 
